@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ASCII ART HOME</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <style>
+    body {
+      background-image: linear-gradient(to right, #8ec5fc, #e0c3fc);
+      font-family: "Monotype Corsiva", cursive;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-title {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 50px;
+      font-weight: bold;
+      color: #6c63ff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      background-image: linear-gradient(to right, #8ec5fc, #e0c3fc);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .form-group label {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .form-control {
+      font-size: 18px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #6c63ff;
+      box-shadow: 0 0 0 0.2rem rgba(108, 99, 255, 0.25);
+    }
+
+    .btn-primary {
+      font-size: 20px;
+      font-weight: bold;
+      background-color: #6c63ff;
+      border-color: #6c63ff;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+      border-radius: 50px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-primary:hover {
+      background-color: #5048e5;
+      border-color: #5048e5;
+    }
+
+    .form-group {
+      margin-bottom: 30px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-group .help-block {
+      font-size: 16px;
+      color: #999;
+      margin-top: 5px;
+    }
+
+    .form-group.has-error .form-control {
+      border-color: #dc3545;
+    }
+
+    .form-group.has-error .help-block {
+      color: #dc3545;
+    }
+
+    .form-group.has-success .form-control {
+      border-color: #28a745;
+    }
+
+    .form-group.has-success .help-block {
+      color: #28a745;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <i class="fas fa-paint-brush fa-5x"></i>
+    <h1 class="form-title">ASCII ART HOME</h1>
+
+    <form action="/" method="post">
+      <div class="form-group">
+        <label for="phrase">Texte que vous voulez représenter :
+          <i class="fas fa-font fa-xs"></i>
+        </label>
+        <textarea id="phrase" name="phrase" rows="2" class="form-control" placeholder="Entrez votre texte ici : (Pas plus de deux lignes)"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="choix">Style de représentation :
+          <i class="fas fa-paint-roller fa-xs"></i>
+        </label>
+        <select id="choix" name="choix" class="form-control">
+          <option value="option1">Shadow</option>
+          <option value="option2">Standard</option>
+          <option value="option3">Thinkertoy</option>
+        </select>
+      </div>
+
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-check fa-xs"></i>
+          Générer
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
