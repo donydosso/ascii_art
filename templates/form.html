@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ASCII ART HOME</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="../static/form.css">
+</head>
+<body>
+  <div class="form-container">
+    <i class="fas fa-paint-brush fa-5x"></i>
+    <h1 class="form-title">ASCII ART HOME</h1>
+
+    <form action="/" method="post">
+      <div class="form-group">
+        <label for="phrase">Texte que vous voulez représenter :
+          <i class="fas fa-font fa-xs"></i>
+        </label>
+        <textarea id="phrase" name="phrase" rows="2" class="form-control" placeholder="Entrez votre texte ici : (Pas plus de deux lignes)"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="choix">Style de représentation :
+          <i class="fas fa-paint-roller fa-xs"></i>
+        </label>
+        <select id="choix" name="choix" class="form-control">
+          <option value="option1">Shadow</option>
+          <option value="option2">Standard</option>
+          <option value="option3">Thinkertoy</option>
+        </select>
+      </div>
+
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-check fa-xs"></i>
+          Générer
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

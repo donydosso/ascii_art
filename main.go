@@ -19,9 +19,13 @@ type FormData struct {
 func main() {
 	http.HandleFunc("/", formHandler)
 	http.HandleFunc("/result", resultHandler)
+	http.Handle(
+		`/static/`,
+		http.StripPrefix("/static/", 
+		http.FileServer(http.Dir(`static`))))
 	http.HandleFunc("/404", notFoundHandler)
 	fmt.Println("Serveur démarré sur le port 2080 : http://localhost:2080")
-	log.Fatal(http.ListenAndServe(":2080", nil))
+	log.Fatal(http.ListenAndServe(":8000", nil))
 }
 
 // Gestionnaire de la page d'erreur 404
@@ -38,7 +42,7 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Vérifier si le chemin correspond à une des pages disponibles
 	if path != "/" && path != "/result" {
-		http.Redirect(w, r, "/404", http.StatusSeeOther) // Rediriger vers la page d'erreur 404 si le chemin ne correspond à aucune page disponible
+		http.Redirect(w, r, "/404", http.StatusNotFound) // Rediriger vers la page d'erreur 404 si le chemin ne correspond à aucune page disponible
 		return
 	}
 
@@ -49,6 +53,7 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			// Gérer l'erreur de parsing du formulaire
 			http.Error(w, "Erreur lors de la récupération des données du formulaire", http.StatusInternalServerError)
+			fmt.Println("Erreur lors de la récupération des données du formulaire : ",err)
 			return
 		}
 
@@ -65,8 +70,14 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Afficher le formulaire
-	tmpl := template.Must(template.ParseFiles("./templates/form.page.tmpl"))
-	tmpl.Execute(w, nil)
+	tmpl := template.Must(template.ParseFiles("./templates/form.html"))
+	err := tmpl.Execute(w, nil)
+	if err != nil {
+		// Gérer l'erreur de parsing du formulaire
+		http.Error(w, "Erreur lors de la lecture du template", http.StatusInternalServerError)
+		fmt.Println("Erreur lors de la lecture du template : ", err)
+		return
+	}
 }
 
 // Gestionnaire de la page de résultat
@@ -85,12 +96,18 @@ func resultHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Afficher le résultat sur une nouvelle page
-	tmpl := template.Must(template.ParseFiles("./templates/result.page.tmpl"))
+	tmpl := template.Must(template.ParseFiles("./templates/result.html"))
 	data := FormData{
 		Phrase: phrase,
 		Choix:  choix,
 	}
-	tmpl.Execute(w, data)
+	err := tmpl.Execute(w, data)
+	if err != nil {
+		// Gérer l'erreur de parsing du formulaire
+		http.Error(w, "Erreur lors de la lecture du template", http.StatusInternalServerError)
+		fmt.Println("Erreur lors de la lecture du template : ", err)
+		return
+	}
 
 	// ASCII ART
 
